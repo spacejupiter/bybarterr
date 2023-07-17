@@ -1,0 +1,16 @@
+
+@font-face {
+    font-family: 'nordique-semi-bold';
+    src: url(../assets/font/Nordique-Pro/NordiqueProBold.otf);
+  }
+  .ns{
+    font-family: nordique-semi-bold;
+  }
+
+  .fontavalo{
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.text{
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-family: 'Poppins', sans-serif;
+}
