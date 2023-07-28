@@ -13,7 +13,7 @@ function Handlewaitlist() {
 		try {
 			if (email !== '') {
 				const result = await axios.post(
-					'http://192.168.0.180:4500/api/waitlist',
+					'http://192.168.1.169:4500/api/waitlist',
 					{
 						email: email,
 					}

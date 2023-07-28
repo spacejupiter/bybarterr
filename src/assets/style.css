@@ -1,16 +1,31 @@
+@font-face {
+	font-family: 'nordique-semi-bold';
+	src: url(../assets/font/Nordique-Pro/NordiqueProBold.otf);
+}
 
 @font-face {
-    font-family: 'nordique-semi-bold';
-    src: url(../assets/font/Nordique-Pro/NordiqueProBold.otf);
-  }
-  .ns{
-    font-family: nordique-semi-bold;
-  }
-
-  .fontavalo{
-    font-family: 'Plus Jakarta Sans', sans-serif;
+	font-family: 'nordique-bold';
+	src: url(../assets/font/Nordique-Pro/NordiquePro-Semibold.otf);
 }
-.text{
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-family: 'Poppins', sans-serif;
+@font-face {
+	font-family: 'nordique-light';
+	src: url(../assets/font/Nordique-Pro/NordiquePro-Regular.otf);
+}
+.ns {
+	font-family: 'nordique-semi-bold';
+}
+.text-light {
+	font-family: 'nordique-light';
+}
+.fontavalo {
+	font-family: 'Plus Jakarta Sans', sans-serif;
+}
+.text {
+	font-family: 'nordique-bold';
+}
+.inter {
+	font-family: 'Inter', sans-serif;
+}
+.poppins {
+	font-family: 'Poppins', sans-serif;
 }

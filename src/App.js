@@ -7,12 +7,13 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Support from './windows/support/support'
 import Faq from './windows/faq/faq'
 import Error from './windows/common/error'
-import Product from './windows/product/product'
-
+import About from './windows/about'
+//import Product from './windows/product/product'
+//import Product from './windows/product/lib/product'
 function App() {
   return (
     <Router>
-      <div className="App  h-auto w-full fontavalo  ">
+      <div className="App  h-auto w-full fontavalo  overflow-x-hidden ">
         <Header />
         <div className="body w-full">
           <Routes>
@@ -21,7 +22,7 @@ function App() {
             <Route path="/support" element={<Support />} />
 
             <Route path="*" element={<Error />} />
-            <Route path="/product" element={<Product />} />
+            <Route path="/about" element={<About />} />
             <Route path="/faq" element={<Faq />} />
           </Routes>
 

@@ -1,97 +1,86 @@
-import { useState } from 'react';
-import logo from '../../assets/images/logo.svg';
-import Aos from 'aos';
-import 'aos/dist/aos.css';
-import { useEffect } from 'react';
+import React, { useState } from 'react';
+import { useSpring, animated } from 'react-spring';
 import { Link } from 'react-router-dom';
+import logo from '../../assets/images/logo.svg';
 
 function Header() {
 	const [isToggled, setToggle] = useState(false);
-	const [style, setStyle] = useState('bg-white');
 
 	const toggle = () => {
 		setToggle(!isToggled);
-		if (style == 'bg-white') {
-			setStyle('bg-green-500');
-		} else {
-			setStyle('bg-white');
-		}
 	};
 
-	const shouldRenderDropdown = () => {
-		if (isToggled) {
-			return renderDropdown();
-		}
-	};
-
-	useEffect(() => {
-		Aos.init({});
-	}, []);
+	const slideAnimation = useSpring({
+		transform: isToggled ? 'translateX(0)' : 'translateX(-100%)',
+	});
 
 	return (
-		<div className='lg:px-[rem] xl:px-[6rem] px-8 lg:pt-4 py-6 lg:py-0  flex flex-row  bg-blue-700 text text-white top-0 border-b border-b-2 sm:border-b-0   fixed bg-blue-700 z-50 w-full py-4 lg:h-[8rem] '>
-			<Link to='/'>
-				<img className='lg:w-44 w-[28vw] lg:mt-4' src={logo} alt='' />
-			</Link>
-
-			<ul className=' lg:block hidden flex flex-row right-4 absolute  top-4 '>
-				<div className='flex flex-row space-x-12 mt-4 md:mt-8'>
-					<Link to='/product' className='mt-3'>
-						Product
-					</Link>
-					<Link to='/faq' className='mt-3'>
-						FaQ's
-					</Link>
-
-					<Link to='/support' className='mt-3'>
-						Support
-					</Link>
-					<Link
-						to='/waitlist'
-						className='border p-4 border-white border-4 rounded-[40rem] '>
-						Go to the app
-					</Link>
+		<div>
+			<animated.div
+				style={slideAnimation}
+				className='fixed z-50 lg:hidden bg-black lg:px-8 w-full poppins top-0 text-black h-full z-50 items-center text-center justify-center flex flex-col'>
+				<div
+					onClick={toggle}
+					className='absolute fixed top-14 right-8 text-white'>
+					x
 				</div>
-			</ul>
-			<div
-				className='lg:hidden flex flex-col space-y-[2px] absolute right-4 top-6'
-				onClick={toggle}>
-				<div className={'w-5 h-[2px] ' + style}></div>
-				<div className={'w-5 h-[2px] bg-white ' + style}></div>
-				<div className={'w-5 h-[2px] bg-white ' + style}></div>
-			</div>
-			{shouldRenderDropdown()}
-		</div>
-	);
-
-	function renderDropdown() {
-		return (
-			<div
-				className='lg:hidden absolute bg-blue-700 w-[85vw] mt-[12.1vw] md:mt-[9vw] md:pt-[14vw]  md:w-[90vw] z-50 flex justify-left border-t border-t-4 border-t-green-500 py-4 '
-				data-aos='fade-down'
-				data-aos-duration='500'>
-				<ul className='flex flex-col space-y-4 ml-5 md:ml-[13vw]'>
-					<Link onClick={toggle} to='/product' className=''>
-						{'products'}
+				<ul className='flex flex-col space-y-4'>
+					<Link onClick={toggle} to='/about' className='text-white'>
+						About us
 					</Link>
-					<Link onClick={toggle} to='/faq' className=''>
-						{' '}
-						FaQ's
+					<Link onClick={toggle} to='/faq' className='text-white'>
+						FaQ'ss
 					</Link>
-					<Link onClick={toggle} to='/support' className=''>
-						{' '}
+					<Link onClick={toggle} to='/support' className='text-white'>
 						Support
 					</Link>
 					<Link
 						onClick={toggle}
 						to='/waitlist'
-						className='bg-white text-blue-700 px-[24vw]  md:px-[24vw] md:py-8  py-4 rounded-[40rem] font-bold -mt-6'>
-						Go to the App
-					</Link>
+						className='text-black px-[24vw] md:px-[24vw] md:py-8 py-4 rounded-[40rem] font-bold'></Link>
 				</ul>
+			</animated.div>
+
+			<div className='lg:px-8 border-b md:border-b-0 items-center z-50 md:space-y-0 space-y-4 flex flex-row bg-white text-black poppins text-black top-0 h-[5rem] px-8 fixed z-30 w-full lg:h-[5rem]'>
+				<Link to='/' className='flex flex-row space-x-2 lg:space-y-1'>
+					<img className='lg:w-8 w-8' src={logo} alt='' />
+					<p className='text-black font-bold ns text md:text-[1.5rem] text-[1.1rem]'>
+						byBarterr
+					</p>
+				</Link>
+
+				<ul className='lg:block hidden flex flex-row ml-auto'>
+					<div className='flex flex-row space-x-4'>
+						<Link to='/about' className='mt-3'>
+							About us
+						</Link>
+						<Link to='/faq' className='mt-3'>
+							FaQ's
+						</Link>
+						<Link to='/support' className='mt-3'>
+							Contact us
+						</Link>
+					</div>
+				</ul>
+				<div
+					className='lg:hidden flex hamburger flex-col space-y-[2px] absolute right-6 top-4'
+					onClick={toggle}>
+					<div
+						className={`w-5 h-[2px] bg-black ${
+							isToggled ? 'transform rotate-45 translate-y-1' : ''
+						}`}></div>
+					<div
+						className={`w-5 h-[2px] bg-black ${
+							isToggled ? 'opacity-0' : ''
+						}`}></div>
+					<div
+						className={`w-5 h-[2px] bg-black ${
+							isToggled ? 'transform -rotate-45 -translate-y-1' : ''
+						}`}></div>
+				</div>
 			</div>
-		);
-	}
+		</div>
+	);
 }
 
 export default Header;

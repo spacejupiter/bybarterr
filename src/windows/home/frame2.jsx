@@ -1,73 +1,106 @@
-import { useEffect } from 'react';
-import buy from '../../assets/images/buy.svg';
-import security from '../../assets/images/security.svg';
-import swap from '../../assets/images/swap.svg';
-import Aos from 'aos';
-import 'aos/dist/aos.css';
+import React from 'react';
+import { useState } from 'react';
+import gamingImg from '../../assets/images/gaming.svg';
+import books from '../../assets/images/books.svg';
+import clothingImg from '../../assets/images/clothings.svg';
+import shoes from '../../assets/images/shoes.svg';
+import laptop from '../../assets/images/desktop.svg';
+import mobileImg from '../../assets/images/mobilephone.svg';
+import swapImg from '../../assets/images/swapdeals.svg';
+import electronics from '../../assets/images/electronics.svg';
+import image1 from '../../assets/images/image.svg';
+import { Link } from 'react-router-dom';
 
 function Frame2() {
-	useEffect(() => {
-		window.scrollTo(0, 0);
-		Aos.init({ duration: 2000 });
-	}, []);
-
+	const [images, setImages] = useState([
+		{
+			url: gamingImg,
+			tag: 'Gaming',
+			caption: 'Find all your gaming needs',
+		},
+		{
+			url: books,
+			tag: 'Books',
+			caption: 'swap and sell books now',
+		},
+		{
+			url: clothingImg,
+			tag: 'Clothing',
+			caption: 'Find all you clothings needs',
+		},
+		{
+			url: shoes,
+			tag: 'Shoes',
+			caption: 'Buy all kind of shoes on the app',
+		},
+		{
+			url: laptop,
+			tag: 'Laptop',
+			caption: 'Find all varities of laptops',
+		},
+		{
+			url: mobileImg,
+			tag: 'Mobile Phones',
+			caption: 'Find varities of mobile phones',
+		},
+		{
+			url: swapImg,
+			tag: 'Swap Deals',
+			caption: 'swap anything for anything ',
+		},
+		{
+			url: electronics,
+			tag: 'Electronics',
+			caption: 'Find all electronical equipments',
+		},
+	]);
 	return (
-		<div className='w-full xl:h-[40rem] lg:max-xl:h-[40rem] h-[60rem] lg:py-0 py-4 flex lg:flex-row flex-col px-4 md:px-8 lg:space-x-4 xl:space-x-8 2xl:space-x-12 lg:space-y-0 space-y-4 md:max-lg:space-y-8 md:max-lg:h-[50rem] justify-center text-[#010532]'>
-			<div
-				className='w-full lg:w-[21rem] md:max-lg:w-[50vw] md:max-lg:ml-[12vw] justify-center flex flex-col items-center space-y-4'
-				data-aos='fade-up'>
-				<div className='p-8 bg-[#2931F8] w-auto text-center justify-center w-14 rounded-[100%]  flex items-center'>
-					<img src={buy} className='w-14' alt='' data-aos='zoom-in' />
-				</div>
-
-				<div className='text-center'>
-					<p className='text-xl font-bold 2xl:text-[30px] xl:text-[20px]'>
-						Sell fast
-					</p>
-					<p className='whitespace-pre-line 2xl:text-[20px] xl:text-[15px]'>
-						We connect buyers with sellers, ensuring trustworthy transactions
-						and providing access to a wide range of high-quality products.
-					</p>
-				</div>
+		<div className='flex flex-col px-8 '>
+			<div className='grid grid-cols-1 xl:grid-cols-4 gap-4  p-4 flex flex-col justify-center items-center  poppins py-24 bg-[#F9F9F9]'>
+				{images.map((element) => {
+					return (
+						<UtilityCrumb
+							url={element.url}
+							tag={element.tag}
+							caption={element.caption}
+						/>
+					);
+				})}
 			</div>
-
-			<div
-				className='w-full lg:w-[21rem] md:max-lg:w-[50vw] md:max-lg:ml-[12vw] justify-center flex flex-col items-center space-y-4'
-				data-aos='fade-up'>
-				<div className='p-8 bg-[#2931F8] w-auto text-center justify-center w-14 rounded-[100%]  flex items-center'>
-					<img src={security} className='w-14' alt='' data-aos='zoom-in' />
-				</div>
-
-				<div className='text-center'>
-					<p className='text-xl font-bold 2xl:text-[30px] xl:text-[20px]'>
-						Escrow
-					</p>
-					<p className='whitespace-pre-line 2xl:text-[20px] xl:text-[15px]'>
-						We facilitate valuable exchanges, ensuring the fair transfer of
-						funds and goods, giving you peace of mind throughout the process
-					</p>
-				</div>
-			</div>
-
-			<div
-				className='w-full lg:w-[21rem] md:max-lg:w-[50vw] md:max-lg:ml-[12vw] justify-center flex flex-col items-center space-y-4'
-				data-aos='fade-up'>
-				<div className='p-8 bg-[#2931F8] w-auto text-center justify-center w-14 rounded-[100%]  flex items-center'>
-					<img src={swap} className='w-14' alt='' data-aos='zoom-in' />
-				</div>
-
-				<div className='text-center'>
-					<p className='text-xl font-bold 2xl:text-[30px] xl:text-[20px]'>
-						Swap
-					</p>
-					<p className='whitespace-pre-line 2xl:text-[20px] xl:text-[15px]'>
-						We facilitate valuable sales by connecting buyers and sellers,
-						ensuring fair exchanges of equivalent items to meet their needs
-					</p>
+			<div className='flex lg:flex-row flex-col space-y-8 lg:space-y-0 w-full bg-[#1D242D] rounded-lg lg:h-auto  '>
+				<img
+					src={image1}
+					alt=''
+					className='rounded-lg lg:max-w-[100vw] lg:max-h-[100vh] cover  '
+				/>
+				<div className=' text-white justify-center text-left flex  flex-col lg:items-center px-4 w-full py-4  poppins'>
+					<div className='flex flex-col space-y-4'>
+						<h1 className='lg:text-[3rem] text-[1.4rem]'>
+							Explore a generous 25%
+							<br /> discount on your first trade <br />
+						</h1>
+						<Link
+							to='/waitlist'
+							className='bg-white text-center w-full lg:w-44 py-4 px-8 text-black mr-auto rounded-lg'>
+							{' '}
+							Get started
+						</Link>
+					</div>
 				</div>
 			</div>
 		</div>
 	);
 }
 
+const UtilityCrumb = ({ url, tag, caption }) => {
+	return (
+		<div className='flex flex-row shadow bg-white shadow-xl shadow-offset-x-offset-y-blur-radius-spread-radius-color" rounded-lg px-4 p-4 poppins space-x-2'>
+			<img src={url} alt={''} className='' />
+			<div className='flex flex-col'>
+				<h1 className='text-lg'>{tag}</h1>
+				<p className='text-gray-400 text-sm'>{caption}</p>
+			</div>
+		</div>
+	);
+};
 export default Frame2;
